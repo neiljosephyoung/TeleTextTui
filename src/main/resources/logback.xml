@@ -1,0 +1,39 @@
+<configuration>
+
+    <!-- ========================= -->
+    <!-- Rolling File Appender     -->
+    <!-- ========================= -->
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- Active log file -->
+        <file>logs/teletext.log</file>
+
+        <!-- Rolling policy -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <!-- Daily rollover -->
+            <fileNamePattern>logs/teletext.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <!-- Keep 14 days of logs -->
+            <maxHistory>14</maxHistory>
+
+            <!-- Optional: cap total size -->
+            <totalSizeCap>500MB</totalSizeCap>
+
+        </rollingPolicy>
+
+        <!-- Log format -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+
+    </appender>
+
+    <!-- ========================= -->
+    <!-- Root logger              -->
+    <!-- ========================= -->
+    <root level="INFO">
+        <appender-ref ref="ROLLING_FILE"/>
+    </root>
+
+</configuration>
